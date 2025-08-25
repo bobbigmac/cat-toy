@@ -32,8 +32,8 @@ class Shape:
         self.shape_type = shape_type
         self.x = random.uniform(0, width)
         self.y = random.uniform(0, height)
-        self.vx = (random.random() - 0.5) * 4 * energy
-        self.vy = (random.random() - 0.5) * 4 * energy
+        self.vx = (random.random() - 0.5) * 15 * energy  # Much faster initial velocity
+        self.vy = (random.random() - 0.5) * 15 * energy
         self.color = random.choice(palette)
         self.base_size = random.randint(50, 120)  # Bigger random base size
         self.size = self.base_size
@@ -94,11 +94,11 @@ class Shape:
 
     def _perform_twitch(self):
         """Perform a twitch movement"""
-        self.vx += (random.random() - 0.5) * 6 * energy
-        self.vy += (random.random() - 0.5) * 6 * energy
+        self.vx += (random.random() - 0.5) * 20 * energy  # Much bigger twitch velocity changes
+        self.vy += (random.random() - 0.5) * 20 * energy
         # Clamp velocity to reasonable range
-        self.vx = max(-6 * energy, min(6 * energy, self.vx))
-        self.vy = max(-6 * energy, min(6 * energy, self.vy))
+        self.vx = max(-25 * energy, min(25 * energy, self.vx))  # Higher max velocity
+        self.vy = max(-25 * energy, min(25 * energy, self.vy))
         self.has_twitched = True
         self.twitch_cooldown = self.twitch_cooldown_duration
 
@@ -124,8 +124,8 @@ class Shape:
         self.color = random.choice(palette)
 
     def change_speed(self):
-        self.vx = (random.random() - 0.5) * 4 * energy
-        self.vy = (random.random() - 0.5) * 4 * energy
+        self.vx = (random.random() - 0.5) * 15 * energy  # Much faster speed changes
+        self.vy = (random.random() - 0.5) * 15 * energy
 
 # Global variables
 shapes = []
